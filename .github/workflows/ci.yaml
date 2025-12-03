@@ -12,7 +12,7 @@ on:
     tags: ["*"]
 
 env:
-  REGISTRY: ghcr.io/monkeycode-ai/devrunner
+  REGISTRY: ghcr.io/chaitin/monkeycode-runner
   STACK: base
   VERSION: bookworm
 
@@ -59,4 +59,4 @@ jobs:
           file: docker/${{ env.STACK }}/${{ env.VERSION }}/Dockerfile
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          push: ${{ github.event_name == 'push' }}
+          push: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}

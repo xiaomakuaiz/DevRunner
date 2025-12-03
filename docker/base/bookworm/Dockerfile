@@ -2,7 +2,7 @@
 FROM debian:bookworm-slim
 
 LABEL org.opencontainers.image.title="DevRunner Base" \
-      org.opencontainers.image.source="https://github.com/MonkeyCode-AI/DevRunner" \
+      org.opencontainers.image.source="https://github.com/chaitin/DevRunner" \
       org.opencontainers.image.description="Base toolbox image for DevRunner stacks"
 
 ARG DEBIAN_FRONTEND=noninteractive

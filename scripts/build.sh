@@ -3,11 +3,11 @@ set -euo pipefail
 
 # Simple builder for DevRunner images.
 # Usage:
-#   STACK=base VERSION=bookworm REGISTRY=ghcr.io/MonkeyCode-AI/devrunner PUSH=false ./scripts/build.sh
+#   STACK=base VERSION=bookworm REGISTRY=ghcr.io/chaitin/monkeycode-runner PUSH=false ./scripts/build.sh
 
 STACK=${STACK:-base}
 VERSION=${VERSION:-bookworm}
-REGISTRY=${REGISTRY:-ghcr.io/monkeycode-ai/devrunner}
+REGISTRY=${REGISTRY:-ghcr.io/chaitin/monkeycode-runner}
 PUSH=${PUSH:-false}
 
 if [[ "${STACK}" == "base" ]]; then
