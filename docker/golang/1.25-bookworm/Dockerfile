@@ -38,7 +38,6 @@ RUN set -eux; \
     tar -C /usr/local -xzf /tmp/go.tar.gz; \
     rm /tmp/go.tar.gz; \
     go env; \
-    go install golang.org/x/tools/gopls@latest; \
     go install honnef.co/go/tools/cmd/staticcheck@latest; \
     go install mvdan.cc/gofumpt@latest; \
     go install github.com/swaggo/swag/cmd/swag@latest; \
