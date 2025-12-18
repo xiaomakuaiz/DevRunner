@@ -12,7 +12,8 @@ ARG DEBIAN_SECURITY_MIRROR="http://security.debian.org/debian-security"
 RUN set -eux; \
     printf 'deb %s bookworm main contrib non-free non-free-firmware\n' "${DEBIAN_MIRROR}" > /etc/apt/sources.list; \
     printf 'deb %s bookworm-updates main contrib non-free non-free-firmware\n' "${DEBIAN_MIRROR}" >> /etc/apt/sources.list; \
-    printf 'deb %s bookworm-security main contrib non-free non-free-firmware\n' "${DEBIAN_SECURITY_MIRROR}" >> /etc/apt/sources.list
+    printf 'deb %s bookworm-security main contrib non-free non-free-firmware\n' "${DEBIAN_SECURITY_MIRROR}" >> /etc/apt/sources.list; \
+    rm -f /etc/apt/sources.list.d/debian.sources
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
