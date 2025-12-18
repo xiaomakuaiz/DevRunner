@@ -13,9 +13,8 @@ on:
 
 env:
   REGISTRY: ghcr.io/chaitin/monkeycode-runner
-  # Use HTTP because the minimal base image lacks CA certificates before apt install.
-  DEBIAN_MIRROR: http://mirrors.tuna.tsinghua.edu.cn/debian
-  DEBIAN_SECURITY_MIRROR: http://mirrors.tuna.tsinghua.edu.cn/debian-security
+  DEBIAN_MIRROR: https://mirrors.tuna.tsinghua.edu.cn/debian
+  DEBIAN_SECURITY_MIRROR: https://mirrors.tuna.tsinghua.edu.cn/debian-security
 
 jobs:
   build:

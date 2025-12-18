@@ -1,3 +1,9 @@
+# Stage that just provides an initialized CA trust store so HTTPS mirrors work
+FROM debian:bookworm AS base-ca
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
+
 # Base developer-friendly image (Debian bookworm-slim)
 FROM debian:bookworm-slim
 
@@ -6,8 +12,11 @@ LABEL org.opencontainers.image.title="DevRunner Base" \
       org.opencontainers.image.description="Base toolbox image for DevRunner stacks"
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG DEBIAN_MIRROR="http://deb.debian.org/debian"
-ARG DEBIAN_SECURITY_MIRROR="http://security.debian.org/debian-security"
+ARG DEBIAN_MIRROR="https://deb.debian.org/debian"
+ARG DEBIAN_SECURITY_MIRROR="https://security.debian.org/debian-security"
+
+COPY --from=base-ca /etc/ssl/certs/ /etc/ssl/certs/
+COPY --from=base-ca /usr/share/ca-certificates/ /usr/share/ca-certificates/
 
 RUN set -eux; \
     printf 'deb %s bookworm main contrib non-free non-free-firmware\n' "${DEBIAN_MIRROR}" > /etc/apt/sources.list; \
