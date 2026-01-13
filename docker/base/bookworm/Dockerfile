@@ -41,6 +41,7 @@ RUN apt-get update \
         python3 \
         python3-pip \
         ripgrep \
+        zsh \
     && ln -sf /usr/bin/vim.tiny /usr/bin/vim \
     && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
     && locale-gen \
@@ -49,9 +50,16 @@ RUN apt-get update \
 
 RUN mkdir -p /workspace
 
+RUN set -eux; \
+    git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git /root/.oh-my-zsh; \
+    rm -rf /root/.oh-my-zsh/.git; \
+    cp /root/.oh-my-zsh/templates/zshrc.zsh-template /root/.zshrc; \
+    chsh -s /usr/bin/zsh root
+
 ENV LANG=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8 \
     PATH=/root/.local/bin:${PATH} \
+    SHELL=/usr/bin/zsh \
     WORKSPACE=/workspace
 
 WORKDIR /workspace
