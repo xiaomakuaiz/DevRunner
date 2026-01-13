@@ -59,6 +59,9 @@ RUN set -eux; \
 ENV LANG=en_US.UTF-8 \
     LC_ALL=en_US.UTF-8 \
     PATH=/root/.local/bin:${PATH} \
+    DISABLE_AUTO_UPDATE=true \
+    UPDATE_ZSH_DAYS=99999 \
+    ZSH_DISABLE_COMPFIX=true \
     SHELL=/usr/bin/zsh \
     WORKSPACE=/workspace
 
