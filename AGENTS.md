@@ -5,7 +5,7 @@
 This repository contains Docker container images for Chaitin MonkeyCode developer workflows. The structure is organized as follows:
 
 - `docker/base/bookworm/` - Base Debian bookworm-slim image with essential development tools
-- `docker/devbox/bookworm/` - All-in-one devbox with Go, Node.js, and Python (extends base)
+- `docker/devbox/bookworm/` - All-in-one devbox with Go, Node.js, Python, and common packages (extends base)
 - `docker/frontend/node20/` - Node.js 20 frontend development image (extends base)
 - `docker/golang/1.25-bookworm/` - Go 1.25 development image (extends base)
 - `scripts/build.sh` - Environment-driven build script for all images

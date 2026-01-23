@@ -25,6 +25,7 @@ Base container images for Chaitin MonkeyCode developer workflows.
 - **Go 1.25.6**: with staticcheck, gofumpt, swag
 - **Node.js 22.22.0**: with Corepack (pnpm, yarn enabled)
 - **Python 3.11**: with pip (PIP_BREAK_SYSTEM_PACKAGES enabled)
+  - Pre-installed packages: requests, flask, django, beautifulsoup4, scrapy
 - **Diagnostic tools**: htop, iputils-ping, iproute2, wget
 
 ### Example Usage:
@@ -37,7 +38,10 @@ go version      # Go 1.25.6
 node --version  # v22.22.0
 python3 --version  # 3.11.x
 npm install     # Works with Corepack enabled
-pip install requests  # Works with PIP_BREAK_SYSTEM_PACKAGES
+python3 -c "import requests; print('requests:', requests.__version__)"  # 2.32.5
+python3 -c "import flask; print('flask:', flask.__version__)"  # 3.1.2
+python3 -c "import django; print('django:', django.VERSION)"  # (5, 2, 10, 'final', 0)
+python3 -c "import scrapy; print('scrapy:', scrapy.__version__)"  # 2.14.1
 ```
 
 ## Frontend image (node20)

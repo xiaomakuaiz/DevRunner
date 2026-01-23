@@ -56,6 +56,13 @@ RUN set -eux; \
 
 ENV PIP_BREAK_SYSTEM_PACKAGES=1
 
+RUN pip3 install --no-cache-dir \
+    requests \
+    flask \
+    django \
+    beautifulsoup4 \
+    scrapy
+
 ENV NODE_VERSION=${NODE_VERSION}
 
 WORKDIR /workspace
