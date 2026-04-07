@@ -42,12 +42,18 @@ RUN apt-get update \
         python3-pip \
         ripgrep \
         zsh \
-    && curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg \
-        -o /usr/share/keyrings/githubcli-archive-keyring.gpg \
-    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
-        > /etc/apt/sources.list.d/github-cli.list \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends gh \
+    && GH_VERSION="2.89.0"; \
+    arch=$(dpkg --print-architecture); \
+    case "${arch}" in \
+        amd64) gh_arch="amd64" ;; \
+        arm64) gh_arch="arm64" ;; \
+        *) echo "Unsupported architecture: ${arch}" && exit 1 ;; \
+    esac; \
+    curl -fsSL "https://github.com/cli/cli/releases/download/v${GH_VERSION}/gh_${GH_VERSION}_linux_${gh_arch}.tar.gz" \
+        -o /tmp/gh.tar.gz; \
+    tar -xzf /tmp/gh.tar.gz -C /tmp; \
+    mv /tmp/gh_${GH_VERSION}_linux_${gh_arch}/bin/gh /usr/local/bin/gh; \
+    rm -rf /tmp/gh.tar.gz /tmp/gh_${GH_VERSION}_linux_${gh_arch} \
     && ln -sf /usr/bin/vim.tiny /usr/bin/vim \
     && echo "en_US.UTF-8 UTF-8" > /etc/locale.gen \
     && locale-gen \
