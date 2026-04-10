@@ -86,6 +86,8 @@ jobs:
             version: node20
           - stack: rust
             version: 1.91-bookworm
+          - stack: java
+            version: 21-bookworm
     permissions:
       contents: read
       packages: write

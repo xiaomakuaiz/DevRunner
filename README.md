@@ -13,6 +13,8 @@ Base container images for Chaitin MonkeyCode developer workflows.
   DEBIAN_MIRROR=https://mirrors.tuna.tsinghua.edu.cn/debian \
   DEBIAN_SECURITY_MIRROR=https://mirrors.tuna.tsinghua.edu.cn/debian-security \
   STACK=base VERSION=bookworm ./scripts/build.sh
+  ```
+
 - Run: `docker run --rm -it ghcr.io/chaitin/monkeycode-runner/base:bookworm bash`
 
 ## Devbox image (bookworm) - All-in-one Development Environment
@@ -62,12 +64,19 @@ python3 -c "import scrapy; print('scrapy:', scrapy.__version__)"  # 2.14.1
 - Push to GHCR: `PUSH=true REGISTRY=ghcr.io/chaitin/monkeycode-runner STACK=rust VERSION=1.91-bookworm ./scripts/build.sh`
 - Run: `docker run --rm -it ghcr.io/chaitin/monkeycode-runner/rust:1.91-bookworm rustc --version`
 
+## Java image (21-bookworm)
+- Dockerfile: `docker/java/21-bookworm/Dockerfile` (extends the base image, installs OpenJDK 21.0.2 from the official OpenJDK download archive, plus Maven 3.9.14 and Gradle 9.4.1 from their official distribution endpoints with checksum verification).
+- Build locally: `STACK=java VERSION=21-bookworm ./scripts/build.sh`
+- Push to GHCR: `PUSH=true REGISTRY=ghcr.io/chaitin/monkeycode-runner STACK=java VERSION=21-bookworm ./scripts/build.sh`
+- Run: `docker run --rm -it ghcr.io/chaitin/monkeycode-runner/java:21-bookworm bash`
+
 ## Layout
 - `docker/base/bookworm/Dockerfile` – base image definition.
 - `docker/devbox/bookworm/Dockerfile` – all-in-one devbox with Go, Node.js, and Python.
 - `docker/frontend/node20/Dockerfile` – Node.js frontend developer image.
 - `docker/golang/1.25-bookworm/Dockerfile` – Go developer image (bookworm + Go 1.25).
 - `docker/rust/1.91-bookworm/Dockerfile` – Rust developer image (bookworm + Rust 1.91).
+- `docker/java/21-bookworm/Dockerfile` – Java developer image (bookworm + JDK 21, Maven, Gradle).
 - `scripts/build.sh` – helper to build/push images (env-driven: STACK, VERSION, REGISTRY, PUSH).
 - `docs/` – docs placeholder for future stacks and CI notes.
 
